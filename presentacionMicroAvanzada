@@ -1,0 +1,168 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "## Strategic InformationTransmission \n",
+    "### Autores: VIncent P. Crawford & Joel Sobel \n",
+    "#### Presentan: Carlos Aranda & Germán Villar"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "## Motivación del documento de investigación : \n",
+    "- Un modelo en el cual emisor mejor informado puede enviar una señal con ruido al receptor para que este tome una decisión sobre el bienestar de ambos. \n",
+    "- Explicar por qué  muchas de las dificultades para llegar a un acuerdo son por motivos de información. \n",
+    "- Cuando los Agentes estan próximos a generar un acuerdo, existen incetivos para ques estos revelen información que facilite llegar a un acuerdo ventajoso para el agente.   "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "# Modelo \n",
+    "- Dos jugadores: Un emisor , $S$, y un receptor, $R$,\n",
+    "- Sólamante el emisor tiene información privada y observa una variable aleatoria $m$, donde $m$ es diferenciable y tiene tiene una funcion de distribución de probabilidad $F(m)$ y una función e densidad $f(m)$ entre $[0,1]$\n",
+    "- El emisor tiene una función de utilidad Von Neumann-Morgesten $U^S (y,m,b)$ la cual es diferenciable dos veces.\n",
+    "    - $y$ es un número real \n",
+    "    - $b$ es un escalar utilizado para evaluar como los interéses de los agentes concuerdan\n",
+    "    - $m$ es la variable aleatoria \n",
+    "- El receptor, también, tiene una función de Von Neumann-Morgestern  $U^R(y,M)$, la cual es diferenciable dos veces.\n",
+    "- Todos  los aspectos del juego son conocidos por ambos jugadores, exceptuando $m$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    " #### Se asume lo siguiente: \n",
+    "- $U^i (y,m)=0$ para un determinado $y$ \n",
+    "- $U^i_{11}< 0$, por lo que $U^i$ tiene un único máximo. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "### El juego\n",
+    "\n",
+    "(1) $S$ observa su tipo, $m$, y envía una señal (que puede ser aleatoria) a $R$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "fragment"
+    }
+   },
+   "source": [
+    "(2) $R$ procesa la información y toma una decisión, la cual determina los pagos de ambos jugadores. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "fragment"
+    }
+   },
+   "source": [
+    "* Aunque la señal de $S$ necesariamente precede la acción de $R$ en el tiempo, como $R$ observa sólo la señal (y no la regla de señalización), la decisión de $S$ y $R$ son estragégicamente \"simultáneas\"."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### El concepto de equilibrio en este modelo: Equilibrio de Nash Bayesiano de Harsanyi\n",
+    "\n",
+    "Un equilibrio de Nash en el que se relacionan las decisiones de los agentes con su información y las situaciones en las que encuentran. En equilibrio, los agentes que entienden el jugo extraen toda la información posible de las señales. Es decir, el equilibrio garantiza que las creencias probabilisticas condicionadas de cada agente acerca de las acciones y características del otro son autoconfirmadas. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "Formalmaente, un equilibrio consiste de una familia de reglas de señalización para $S$, denotadas $q(n | m)$, y una regla de decisión para $R$, denotada $y(n)$:\n",
+    "\n",
+    "(1) Para cada $m \\in [0,1]$, $\\int_N q(n | m)dn = 1$, donde el conjunto de Borel $N$ es el conjunto de señales alcanzables, y si $n^*$ yace en el soporte de q(· |m), entonces $n^*$ resuelve $\\max_{n \\in N} U^S(y(n), m, b);$ y\n",
+    "\n",
+    "(2) Para cada $n$, $y(n)$ resuelve $\\max_y \\int_0^1 U^R(y, m)p(m | n)dm,$\n",
+    "donde $p(m | n) \\equiv \\frac{q(n | m) f(m)}{\\int_0^1 q(n |t)f(t)dt}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "skip"
+    }
+   },
+   "source": [
+    "(Esto lo podemos quitar, pero quien lo diga debe entenderlo muy bien)\n",
+    "La condición (1) dice que la regla de señalización de $S$ arroja una acción que maximiza la utilidad esperada para cada uno de sus \"tipos\" de información, tomando la regla de acción de $R$ como dada. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "skip"
+    }
+   },
+   "source": [
+    "La condición (2) dice que $R$ responde de manera óptima a cada señal posible mediante la regla de Bayes para actualizar su decisión, tomando en cuenta la estrategia de señalización de $S$ y la señal que recibe. Como $U_{11}^R (·) <0,$ la función objetivo en (2) es estricatmente cóncava en $y$; por tanto, $R$ nunca utilizará estragegias mixtas en equilibrio. Es decir, la decisión de equilibrio de $R$ generalmente crea costos de señalización endógenos, los que permiten equilibrios con un ordenamiento parcial."
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Slideshow",
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
